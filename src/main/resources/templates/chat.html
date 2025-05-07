@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>Chatroom</title>
     <link rel="stylesheet" href="/css/chat.css">
+    <!-- 引入 SockJS 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+    <!-- 引入 Stomp.js 库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+
 </head>
 <body>
 <h1>Chatroom</h1>
@@ -14,6 +20,7 @@
         <ul>
             <li th:each="room : ${rooms}" th:text="${room}"></li>
         </ul>
+        <a href="/chat/join?roomId=room1">加入room1</a>
     </div>
 
     <!-- Chat Section -->
@@ -25,7 +32,7 @@
             </div>
         </div>
         <div class="input-box">
-            <form class = "message" action="/send-message" method="post">
+            <form class = "message" action="/chat" method="post">
                 <div class="contentbox">
                 <textarea class="content" name="message" placeholder="Type your message..." required></textarea>
                 <button type="submit">Send</button>
@@ -42,5 +49,6 @@
         </ul>
     </div>
 </div>
+<script src="/js/chat.js"></script>
 </body>
 </html>

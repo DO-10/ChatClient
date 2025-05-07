@@ -1,4 +1,4 @@
-package com.example.chatclient.MessageSender;
+package com.example.chatclient.service;
 
 import io.netty.channel.Channel;
 

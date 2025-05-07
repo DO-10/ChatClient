@@ -1,4 +1,4 @@
-package com.example.chatclient.MessageSender;
+package com.example.chatclient.service;
 
 import com.example.chatclient.model.Message;
 import com.example.chatclient.protocol.MessageType;

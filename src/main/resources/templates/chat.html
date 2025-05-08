@@ -15,14 +15,18 @@
 <h1>Chatroom</h1>
 <div class="container">
     <!-- Chat Rooms -->
-    <div class="rooms">
-        <h3>Rooms</h3>
-        <ul>
-            <li th:each="room : ${rooms}" th:text="${room}"></li>
-        </ul>
-        <a href="/chat/join?roomId=room1">加入room1</a>
-    </div>
-
+<!--    <div class="rooms">-->
+<!--        <h3>Rooms</h3>-->
+<!--        <ul>-->
+<!--            <li th:each="room : ${rooms}" th:text="${room}"></li>-->
+<!--        </ul>-->
+<!--        <a href="/chat/join?roomId=room1">加入room1</a>-->
+<!--    </div>-->
+    <h3>Rooms</h3>
+    <form id="joinRoomForm">
+        <input type="text" id="roomId" placeholder="输入房间号" required>
+        <button type="submit">加入</button>
+    </form>
     <!-- Chat Section -->
     <div class="chat">
         <div class="messages">

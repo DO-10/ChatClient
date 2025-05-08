@@ -38,6 +38,7 @@ public class LoginController {
         //需要解析服务器响应结果
         session.setAttribute("username", username);
         session.setAttribute("channel", channel);
+        session.setAttribute("username", username);
         return "redirect:/chat"; // 登录成功后重定向到聊天页面
 
     }

@@ -27,17 +27,15 @@
     <div class="chat">
         <div class="messages">
             <h3>Messages</h3>
-            <div th:each="message : ${messages}">
-                <p><strong th:text="${message.sender}"></strong>: <span th:text="${message.content}"></span></p>
-            </div>
         </div>
         <div class="input-box">
-            <form class = "message" action="/chat" method="post">
+            <form id="messageForm" class="message">
                 <div class="contentbox">
-                <textarea class="content" name="message" placeholder="Type your message..." required></textarea>
-                <button type="submit">Send</button>
+                    <textarea id="messageContent" class="content" name="message" placeholder="Type your message..." required></textarea>
+                    <button type="submit">Send</button>
                 </div>
             </form>
+
         </div>
     </div>
 

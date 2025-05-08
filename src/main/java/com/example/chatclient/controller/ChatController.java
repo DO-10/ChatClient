@@ -1,5 +1,6 @@
 package com.example.chatclient.controller;
 
+import com.example.chatclient.mapper.UserRoomMapper;
 import com.example.chatclient.service.ChatMessageSender;
 import com.example.chatclient.service.JoinRoomSender;
 import io.netty.channel.Channel;
@@ -25,6 +26,8 @@ public class ChatController {
     @GetMapping("/join")
     public String joinRoom(@RequestParam String roomId, HttpSession session) {
         // 这里可以添加逻辑，比如加入聊天室
+        UserRoomMapper.userRoomMapper.put(roomId,(String) session.getAttribute("username"));
+        System.out.println("【命令行战士】"+ UserRoomMapper.userRoomMapper);
         JoinRoomSender joinRoomSender = new JoinRoomSender("1", roomId);
         joinRoomSender.send((Channel) session.getAttribute("channel"));
         // 然后返回聊天页面

@@ -15,14 +15,16 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class ChatEndPoint {
 
-    private static final Map<String, Session> onlineUsers = new ConcurrentHashMap<>();
+    public static final Map<String, Session> onlineUsers = new ConcurrentHashMap<>();
     private HttpSession httpSession;
 
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) throws IOException {
 //        this.httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
-//        String id = (String) this.httpSession.getAttribute("id");
-//        onlineUsers.put(id,session);
+//        String username = (String) this.httpSession.getAttribute("username");
+//        System.out.println("用户名："+ username);
+        onlineUsers.put("1",session);
+        System.out.println("session is online"+onlineUsers);
         String a = "{\"username\":\"System\", \"message\":\"Welcome to the chat room!\"}";
         session.getBasicRemote().sendText(a);
 
@@ -35,8 +37,8 @@ public class ChatEndPoint {
     @OnClose
     public void onClose(Session session) {
         // Handle the close event
-        String id = (String) this.httpSession.getAttribute("id");
-        onlineUsers.remove(id);
-        System.out.println("User " + id + " has left the chat.");
+//        String id = (String) this.httpSession.getAttribute("id");
+//        onlineUsers.remove(id);
+        System.out.println("User "  + " has left the chat.");
     }
 }

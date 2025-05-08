@@ -11,6 +11,7 @@ public class Message {
     private MessageType type;
     private StatusCode status;
     private String sender;
+    private String receiver;
     private String roomId;
     private String content;
     private long timestamp;

@@ -68,3 +68,51 @@ body {
     margin-bottom: 10px;
     height: 100%;
 }
+.room-join {
+    margin: 2rem auto;
+    max-width: 400px;
+    padding: 1rem;
+}
+
+#joinForm {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#joinForm input {
+    flex: 1;
+    padding: 0.5rem;
+}
+
+.chat-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.room-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.room-list li {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.room-list li.active {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.message {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.sender {
+    color: #666;
+    margin-right: 0.5rem;
+}

@@ -18,7 +18,9 @@ public class LoginMessageSender implements MessageSender {
         Message login = new Message();
         login.setType(MessageType.LOGIN_REQUEST);
         login.setSender(userId);
+
         login.setContent(password);
+        System.out.println("xxxxx"+login.getSender());
         channel.writeAndFlush(login);
     }
 }

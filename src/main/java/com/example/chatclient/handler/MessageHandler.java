@@ -3,6 +3,8 @@ package com.example.chatclient.handler;
 import com.example.chatclient.controller.ChatEndPoint;
 import com.example.chatclient.model.Message;
 //import com.example.chatclient.service.WebSocketMessageRender;
+import com.example.chatclient.util.JsonUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import jakarta.websocket.EncodeException;
@@ -13,13 +15,14 @@ import org.springframework.stereotype.Component;
 import com.example.chatclient.protocol.MessageType;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @Component
 public class MessageHandler extends SimpleChannelInboundHandler<Message> {
 //    @Autowired
 //    WebSocketMessageRender webSocketMessageRender;
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws EncodeException, IOException {
+    protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
         System.out.println("[客户端接收] " + msg);
         System.out.println("online"+ChatEndPoint.onlineUsers);
         System.out.println("接收者是"+msg.getReceiver());
@@ -27,11 +30,11 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
             System.out.println(msg.getUsers());
         }
         Session session = ChatEndPoint.onlineUsers.get(msg.getReceiver());
-        session.getBasicRemote().sendText("{\"message\":\"你好呀\",\"warning\":\"我知道这不是你发送的消息的内容,我只是想向你证明web后端接收到了服务器的消息,并且可以成功发送到web客户端\"}");
-//        session.getBasicRemote().sendObject(msg);
-        // 渲染接收到的消息
-//        webSocketMessageRender.render(msg);
-//        System.out.println("[客户端渲染] " + msg);
+        ObjectMapper mapper = new ObjectMapper();
+
+        String json = mapper.writeValueAsString(msg);
+
+        session.getBasicRemote().sendText(json);
     }
 }
 

@@ -8,8 +8,18 @@ ws.onmessage=function (event){
     console.log(data)
     var messageElement = document.createElement('div');
     messageElement.classList.add('message-item');  // 你可以给它添加样式
-    messageElement.textContent = data.message+data.warning;// 显示消息的内容
-
+    messageElement.textContent = data.content+"\t消息来自"+data.sender;//
+    if (data.type === "INFORMATION") {
+        const userList = document.querySelector('.online-users');
+        userList.innerHTML = '';
+        console.log('users:'+ data.users)
+        data.users.forEach(user => {
+            console.log(user)
+            var userElement = document.createElement('div');
+            userElement.textContent = user; // 假设 user 是用户名字符串
+            userList.appendChild(userElement);
+        });
+    }
     var messageContainer = document.querySelector('.messages');
     messageContainer.appendChild(messageElement);  // 添加到页面中
 }

@@ -21,10 +21,8 @@ public class ChatEndPoint {
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) throws IOException {
         this.httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
-        String username = (String) httpSession.getAttribute("username");
-        System.out.println(" connected");
-//        System.out.println("用户名："+ username);
-
+        String username = (String) this.httpSession.getAttribute("username");
+        System.out.println("用户名："+ username);
         onlineUsers.put(username,session);
         System.out.println("session is online"+onlineUsers);
         String a = "{\"username\":\"System\", \"message\":\"Welcome to the chat room!\"}";

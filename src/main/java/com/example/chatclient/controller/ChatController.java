@@ -17,7 +17,7 @@ public class ChatController {
     }
     @PostMapping
     public String sendMessage(@RequestParam String message, HttpSession session) {
-        ChatMessageSender chatMessageSender = new ChatMessageSender("1","room1", message);// 处理发送的消息
+        ChatMessageSender chatMessageSender = new ChatMessageSender((String) session.getAttribute("username"),(String) session.getAttribute("currentRoom"), message);// 处理发送的消息
         chatMessageSender.send((Channel) session.getAttribute("channel"));
         // 这里可以添加逻辑，比如将消息发送到服务器
         // 然后返回聊天页面

@@ -61,4 +61,6 @@ public class Message {
     public void setUsers(List<String> users) {
         this.users = users;
     }
+    public String getReceiver() { return receiver; }
+    public void setReceiver(String receiver) { this.receiver = receiver; }
 }

@@ -21,8 +21,11 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws EncodeException, IOException {
         System.out.println("[客户端接收] " + msg);
-        System.out.println(ChatEndPoint.onlineUsers);
+        System.out.println("online"+ChatEndPoint.onlineUsers);
         System.out.println("接收者是"+msg.getReceiver());
+        if(msg.getType()==MessageType.INFORMATION){
+            System.out.println(msg.getUsers());
+        }
         Session session = ChatEndPoint.onlineUsers.get(msg.getReceiver());
         session.getBasicRemote().sendText("{\"message\":\"你好呀\",\"warning\":\"我知道这不是你发送的消息的内容,我只是想向你证明web后端接收到了服务器的消息,并且可以成功发送到web客户端\"}");
 //        session.getBasicRemote().sendObject(msg);
